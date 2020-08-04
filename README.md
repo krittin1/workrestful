@@ -2,7 +2,11 @@
 
 ## How to set up and Run Project
 #### open terminal
-+ ---> ```shell $gradlew ```
++ ---> ```console $gradlew ```
 + ---> $gradlew test
 + ---> $gradlew bootRun
 + port: [http://localhost:8080/](#)
+
+```properties
+npm run build
+``` 

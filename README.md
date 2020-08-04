@@ -2,11 +2,12 @@
 
 ## How to set up and Run Project
 #### open terminal
-+ ---> ```console $gradlew ```
++ ---> $gradlew
 + ---> $gradlew test
 + ---> $gradlew bootRun
 + port: [http://localhost:8080/](#)
 
-```properties
-npm run build
-``` 
+```bat
+foo@bar:~$ gradlew
+
+```

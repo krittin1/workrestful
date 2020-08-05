@@ -1,12 +1,10 @@
 package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -22,9 +20,9 @@ public class UserController {
             @RequestParam(name = "item_per_page", defaultValue = "10") int item_per_page) {
         PagingResponse pagingResponse = new PagingResponse(page, item_per_page);
         List<UsersResponse> usersResponseList = new ArrayList<>();
-        Pageable firstPageWithOneElement = PageRequest.of(page - 1, item_per_page);
+        Pageable pageWithElement = PageRequest.of(page - 1, item_per_page);
         Pageable secondPageWithTwoElements = PageRequest.of(1, 2);
-        Page<User> users = userRepository.findAll(firstPageWithOneElement);
+        Page<User> users = userRepository.findAll(pageWithElement);
         /*
          List<User> allUsersId = userRepository.findAllById(2, secondPageWithTwoElements);
          Iterable<User> users = userRepository.findAll();

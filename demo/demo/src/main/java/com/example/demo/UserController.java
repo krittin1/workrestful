@@ -12,14 +12,17 @@ public class UserController {
     @GetMapping("/users")
     // TODO: step_02 is done
     //       there have some bug to fix.
-    public  List<UsersResponse> getAllUser(
-             @RequestParam int page
-            ,int item_per_page) {
+    public  PagingResponse getAllUser(
+             @RequestParam(defaultValue = "1") int page,
+             @RequestParam(name = "item_per_page", defaultValue = "10") int item_per_page) {
+        PagingResponse pagingResponse = new PagingResponse(page, item_per_page);
+
         List<UsersResponse> usersResponseList = new ArrayList<>();
         usersResponseList.add(new UsersResponse(1, "User 1"));
         usersResponseList.add(new UsersResponse(2, "User 2"));
         usersResponseList.add(new UsersResponse(3, "User 3"));
-        return usersResponseList;
+        pagingResponse.setUsersResponse(usersResponseList);
+        return pagingResponse;
     }
 
     @GetMapping("/users/{id}")

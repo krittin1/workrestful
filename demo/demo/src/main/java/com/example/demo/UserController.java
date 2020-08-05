@@ -13,17 +13,19 @@ public class UserController {
     private UserRepository userRepository;
 
     @GetMapping("/users")
-    // TODO: step_02 is done
-    //       there is some bug to fix.
+
     public  PagingResponse getAllUser(
              @RequestParam(defaultValue = "1") int page,
              @RequestParam(name = "item_per_page", defaultValue = "10") int item_per_page) {
         PagingResponse pagingResponse = new PagingResponse(page, item_per_page);
 
         List<UsersResponse> usersResponseList = new ArrayList<>();
-        usersResponseList.add(new UsersResponse(1, "User 1"));
-        usersResponseList.add(new UsersResponse(2, "User 2"));
-        usersResponseList.add(new UsersResponse(3, "User 3"));
+
+        Iterable<User> users = userRepository.findAll();
+        for (User user: users) {
+            usersResponseList.add(new UsersResponse(user.getId(), user.getName()));
+        }
+
         pagingResponse.setUsersResponse(usersResponseList);
         return pagingResponse;
     }

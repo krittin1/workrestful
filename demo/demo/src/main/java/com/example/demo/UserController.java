@@ -12,28 +12,24 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-
 public class UserController {
     @Autowired
     private UserRepository userRepository;
 
     @GetMapping("/users")
-    public  PagingResponse getAllUser(
-             @RequestParam(defaultValue = "1") int page,
-             @RequestParam(name = "item_per_page", defaultValue = "10") int item_per_page) {
+    public PagingResponse getAllUser(
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(name = "item_per_page", defaultValue = "10") int item_per_page) {
         PagingResponse pagingResponse = new PagingResponse(page, item_per_page);
-
         List<UsersResponse> usersResponseList = new ArrayList<>();
-
-        Pageable firstPageWithOneElement = PageRequest.of(page-1, item_per_page);
-
+        Pageable firstPageWithOneElement = PageRequest.of(page - 1, item_per_page);
         Pageable secondPageWithTwoElements = PageRequest.of(1, 2);
-
         Page<User> users = userRepository.findAll(firstPageWithOneElement);
-//        Page<User> result = userRepository.findAll(PageRequest.of(page-1, item_per_page));
-//        List<User> allUsersId = userRepository.findAllById(2, secondPageWithTwoElements);
-//        Iterable<User> users = userRepository.findAll();
-        for (User user: users) {
+        /*
+         List<User> allUsersId = userRepository.findAllById(2, secondPageWithTwoElements);
+         Iterable<User> users = userRepository.findAll();
+         */
+        for (User user : users) {
             usersResponseList.add(new UsersResponse(user.getId(), user.getName()));
         }
 

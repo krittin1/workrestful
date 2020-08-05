@@ -19,3 +19,5 @@ krittin1@bingzu:~$ gradlew bootJar
 krittin1@bingzu:~$ java -jar build/libs/demo-0.0.1-SNAPSHOT.jar
 ```
 + port: [http://localhost:8080/](#)
+
+rest api
